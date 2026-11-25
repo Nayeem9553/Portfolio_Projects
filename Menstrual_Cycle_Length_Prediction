@@ -1,0 +1,35 @@
+from datetime import datetime, timedelta
+from sklearn.tree import DecisionTreeClassifier
+
+def add_days_to_date(start_date: str, days_to_add: int) -> str:
+
+    initial_date = datetime.strptime(start_date, "%d-%m-%Y")
+    future_date = initial_date + timedelta(days=int(days_to_add))  # Convert to Python int
+
+    # Returning the result in 'day-month-year' format
+    return future_date.strftime("%d-%m-%Y")
+
+# Training data: [period length (days), stress level (1-10), sleep hrs]
+X = [[3, 10, 9], [4, 7, 9], [5, 10, 9], [5, 3, 9]]
+# Target data: [Cycle length in days]
+Y = [41, 35, 44, 35]
+
+# Create and fit the Decision Tree model
+clf = DecisionTreeClassifier().fit(X, Y)
+
+# Predicts the cycle length with a new set of input data
+# Features: [day of month, period length (days), stress level (1-10)]
+new_data = [[5, 9, 10]]
+prediction = int(clf.predict(new_data)[0])  # Extracting and converting prediction to int
+
+print(f"The predicted cycle length is {prediction} days.")
+
+# Calculates the next expected date based on the predicted cycle length
+start_date = "12-01-2025"  # Initial date
+next_cycle_days = prediction  # Days to add based on predicted cycle length
+next_cycle_date = add_days_to_date(start_date, next_cycle_days)
+print("The next predicted date after", next_cycle_days, "days:", next_cycle_date)
+
+# Calculates the date for the cycle after the next cycle
+following_cycle_date = add_days_to_date(next_cycle_date, prediction)
+print("The predicted date for the cycle after that is:", following_cycle_date)
