@@ -32,7 +32,7 @@ df = df[df['score'] != 0]
 # best_value_products = df.sort_values('PriceToPerformance',ascending=False)
 # print(best_value_products[['name', 'category' , 'price', 'score', 'PriceToPerformance']], )
 
-'''we can make it like category wise and top 5 best price to prformance. for that i need knowledge, which are
+'''we can make it like category wise and top 5 best price to prformance. for that I need information, which are
  #Group by 'Category' and sort by Price-to-Performance within each category
     --df_sorted = df.sort_values(['Category', 'PriceToPerformance'], ascending=[True, True])
  #Get top 5 products for each category
@@ -66,14 +66,14 @@ top_5_filtered = df_sorted_filtered.groupby('category').head(5)
 print(top_5_from_all_category[['name', 'category', 'price', 'score', 'PriceToPerformance']])
 
 ### 15-11-24 
-'''I see RAM are GDDR2, GPU ar eGDDR3 ans very low which no one would consider to buy in htis year of 2025, so i need t make some adjustments 
-to make then atleat GDDr4 and GDD6 other that hta asre good i guess 
-18-10-24
-I can do is String matching and Filtering :-
+'''I see RAM are GDDR2, GPU are GDDR3 that are very low which no one would consider to buy in this year of 2025, so i need to make some adjustments 
+to make them atleast GDDR4 and GDDR5
 
- Check the RAM and GPU types: First, confirm that the relevant columns have the information about the RAM and GPU types (e.g., GDDR2, GDDR3). If they do, you'll need to filter based on those values.
+I can do it using String matching and Filtering :-
 
-Filter out outdated components: For both RAM and GPUs, you'll apply filters to remove rows with GDDR2 and GDDR3, keeping only products that have GDDR4, GDDR5, or higher.
+Checking the RAM and GPU types: First, confirm that the relevant columns have the information about the RAM and GPU types (e.g., GDDR2, GDDR3). If they do, you'll need to filter based on those values.
+
+Filter out outdated components: For both RAM and GPUs, I'll apply filters to remove rows with GDDR2 and GDDR3, keeping only products that have GDDR4, GDDR5, or higher.
 '''
 
 df['category'].value_counts().plot(kind='bar', color='skyblue')
@@ -81,3 +81,4 @@ plt.title("Product Count by Category")
 plt.xlabel("Category")
 plt.ylabel("Count")
 plt.show()
+
